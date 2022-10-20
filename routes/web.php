@@ -17,10 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/leave', function () {
-    return view('test');
-});
-
+//Route::get('/leave', function () {
+//    return view('test');
+//});
+Route::get('/leave', [\App\Http\Controllers\LeaveController::class, 'listLeave']);
+Route::post('leave', [\App\Http\Controllers\LeaveController::class, 'saveData'])->name('leave');
 Route::get('/layout', function () {
     return view('layouts.app1');
 });

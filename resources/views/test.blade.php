@@ -79,10 +79,46 @@
 <h1>Szabadság kalkulátor</h1>
 <p>Alapszabadság :20</p>
 <div>
-    <livewire:leave />
+    <form action="{{ route('leave') }}" method="post" >
+        @csrf
+        <label class="input-group-text">Típus:</label>
+        <select name="type" id="type">
+            <option value=1 >Fizetett szabadság</option>
+            <option value=2 >Betegszabadság</option>
+        </select>
+
+        <label class="input-group-text">Kezdet:</label>
+        <input type="date" name="start" />
+        <label class="input-group-text">Vég:</label>
+        <input type="date" name="end" />
+        <label class="input-group-text">Szoveg:</label>
+        <textarea  id="desc" name="desc"></textarea>
+        <input type="submit" class="btn btn-success btn-kuldes" name="action" value="Mentés">
+        <input type="submit" class="btn btn-success btn-kuldes" name="action" value="Draft">
+    </form>
+
+    <table>
+        <tr>
+            <th>Név</th>
+            <th>Kezdet</th>
+            <th>Vég</th>
+            <th>Leírás</th>
+            <th>Státusz</th>
+        </tr>
+        <tr>
+            @if($leave)
+                @foreach($leave as $leaves)
+                    <td>{{$leaves->Users->name}}</td>
+                    <td>{{$leaves->start}}</td>
+                    <td>{{$leaves->end}}</td>
+                    <td>{{$leaves->desc}}</td>
+                    <td>{{$leaves->status}}</td>
+                @endforeach
+            @endif
+        </tr>
+    </table>
+
 </div>
 
-
-<button type="button" class="btn btn-primary">Primary</button>
 </body>
 </html>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('leave_number')->nullable();
+            $table->integer('sick-leave')->nullable();
             $table->integer('children')->nullable();
             $table->date('birthday')->nullable();
             $table->rememberToken();
