@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\LeaveService;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,6 +55,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'birthday' => ['required','date_format:Y-m-d'],
+            'children' => ['required','numeric'],
         ]);
     }
 
@@ -64,10 +68,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+//        $years= Carbon::parse($data['birthday'])->age;
+//        dd($years);
+
+//        return User::create([
+//            'name' => $data['name'],
+//            'email' => $data['email'],
+//            'password' => Hash::make($data['password']),
+//            'birthday' => $data['birthday'],
+//            'children' => $data['children'],
+//            'leave_number' => 20,
+//            'sick-leave' => 0,
+//        ]);
+
+        $leaveService = new LeaveService();
+
+        $user = new User;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->birthday = $data['birthday'];
+        $user->children = $data['children'];
+        $user->leave_number = $leaveService->calculateLeaves($data['children'], $data['birthday']);
+        $user->sick_leave = 0;
+        $user->save();
+        return $user;
     }
+
 }

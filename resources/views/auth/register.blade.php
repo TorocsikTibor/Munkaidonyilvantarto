@@ -20,6 +20,16 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('Birthday') }}" />
+                <x-jet-input id="birthday" class="block mt-1 w-full" type="date" name="birthday" pattern="\d{4}-\d{2}-\d{2}" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('Number of children') }}" />
+                <x-jet-input id="children" class="block mt-1 w-full" type="number" name="children" required />
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>

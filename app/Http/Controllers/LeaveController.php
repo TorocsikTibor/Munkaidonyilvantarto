@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LeaveController extends Controller
 {
+    public function index(){
+        return view('makeleave');
+    }
+
     public function saveData(Request $request) {
 
         $leave = new Leave;
@@ -26,10 +30,11 @@ class LeaveController extends Controller
 
         $leave->save();
 
-        return view('test');
+        return redirect('leave');
     }
 
     public function listLeave() {
+        $data=['leave'];
         return view('test', [
             'leave' => Leave::with('Users:id,name')->get()
         ]);

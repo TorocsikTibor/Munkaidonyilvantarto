@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'leave_number' => 20,
             'children' => 1,
             'birthday' => '1995-10-18 11:04:44',
+            'sick_leave' => 0,
         ]);
     }
 }

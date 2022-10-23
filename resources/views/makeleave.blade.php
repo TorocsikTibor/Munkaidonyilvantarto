@@ -77,35 +77,25 @@
     </main>
 </div>
 <h1>Szabadság kalkulátor</h1>
-<a href="{{ route('index') }}" class="btn btn-danger">Szabadság</a>
+<p>Alapszabadság :20</p>
 <div>
+    <form action="{{ route('makeleave') }}" method="post" >
+        @csrf
+        <label class="input-group-text">Típus:</label>
+        <select name="type" id="type">
+            <option value=1 >Fizetett szabadság</option>
+            <option value=2 >Betegszabadság</option>
+        </select>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Név</th>
-            <th scope="col">Kezdet</th>
-            <th scope="col">Vég</th>
-            <th scope="col">Leírás</th>
-            <th scope="col">Státusz</th>
-            <th scope="col">Created_at</th>
-        </tr>
-        </thead>
-        <tbody>
-            @if($leave)
-                @foreach($leave as $leaves)
-                    <tr>
-                    <th scope="row">{{$leaves->Users->name}}</th>
-                    <td>{{$leaves->start}}</td>
-                    <td>{{$leaves->end}}</td>
-                    <td>{{$leaves->desc}}</td>
-                    <td>{{$leaves->status}}</td>
-                    <td>{{$leaves->created_at}}</td>
-                    </tr>
-                @endforeach
-            @endif
-        </tbody>
-    </table>
+        <label class="input-group-text">Kezdet:</label>
+        <input type="date" name="start" />
+        <label class="input-group-text">Vég:</label>
+        <input type="date" name="end" />
+        <label class="input-group-text">Szoveg:</label>
+        <textarea  id="desc" name="desc"></textarea>
+        <input type="submit" class="btn btn-success btn-kuldes" name="action" value="Mentés">
+        <input type="submit" class="btn btn-success btn-kuldes" name="action" value="Draft">
+    </form>
 
 </div>
 
