@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\LeaveCalculate;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Services\LeaveService;
@@ -87,11 +88,17 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->birthday = $data['birthday'];
-        $user->children = $data['children'];
         $user->leave_number = $leaveService->calculateLeaves($data['children'], $data['birthday']);
         $user->sick_leave = 0;
         $user->save();
+
+        $leaveCalculate = new LeaveCalculate();
+        $leaveCalculate->user_id = $user->id;
+        $leaveCalculate->birthday = $data['birthday'];
+        $leaveCalculate->starting_work = $data['starting_work'];
+        $leaveCalculate->children = $data['children'];
+        $leaveCalculate->save();
+
         return $user;
     }
 

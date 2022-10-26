@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('leave_calculate', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('leave_number')->nullable();
-            $table->integer('sick_leave')->nullable();
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id');
+            $table->date('starting_work');
+            $table->integer('children');
+            $table->date('birthday');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('leave_calculate');
     }
 };

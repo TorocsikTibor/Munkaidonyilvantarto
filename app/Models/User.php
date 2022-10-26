@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Leave::class);
     }
+
+    public function leaveCalculate(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(LeaveCalculate::class);
+    }
 }

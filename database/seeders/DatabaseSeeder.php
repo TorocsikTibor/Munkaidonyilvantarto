@@ -33,9 +33,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('123'),
             'leave_number' => 20,
+            'sick_leave' => 0,
+        ]);
+
+        DB::table('leave_calculate')->insert([
+            'user_id' => 1,
             'children' => 1,
             'birthday' => '1995-10-18 11:04:44',
-            'sick_leave' => 0,
+            'starting_work' => '1996-10-18 11:04:44',
         ]);
     }
 }

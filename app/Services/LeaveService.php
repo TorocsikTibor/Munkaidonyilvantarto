@@ -8,29 +8,15 @@ class LeaveService
 {
         public function calculateLeaves(int $children, string $birthday): int
         {
-            $birthday= Carbon::parse($birthday)->age;
+            $age = Carbon::parse($birthday)->age;
             $leaveNumber = 20;
 
-            if($birthday >= 45) {
-                $leaveNumber += 10;
-            } elseif ($birthday >= 43) {
-                $leaveNumber += 9;
-            } elseif ($birthday >= 41) {
-                $leaveNumber += 8;
-            } elseif ($birthday >= 39) {
-                $leaveNumber += 7;
-            } elseif ($birthday >= 37) {
-                $leaveNumber += 6;
-            } elseif ($birthday >= 35) {
-                $leaveNumber += 5;
-            } elseif ($birthday >= 33) {
-                $leaveNumber += 4;
-            } elseif ($birthday >= 31) {
-                $leaveNumber += 3;
-            } elseif ($birthday >= 28) {
-                $leaveNumber += 2;
-            } elseif ($birthday >= 25) {
-                $leaveNumber += 1;
+            $extraLeaveAges = [25,28,31,33,35,37,39,41,43,45];
+
+            foreach($extraLeaveAges as $extraLeaveAge) {
+                if ($extraLeaveAge <= $age) {
+                    $leaveNumber++;
+                }
             }
 
             $leaveNumber += match ($children) {
@@ -39,6 +25,7 @@ class LeaveService
                 2 => 4,
                 default => 7,
             };
+
             return $leaveNumber;
         }
 }
