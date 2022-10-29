@@ -88,7 +88,7 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->leave_number = $leaveService->calculateLeaves($data['children'], $data['birthday']);
+        $user->leave_number = $leaveService->calculateLeaves($data['children'], $data['birthday'], $data['starting_work']);
         $user->sick_leave = 0;
         $user->save();
 

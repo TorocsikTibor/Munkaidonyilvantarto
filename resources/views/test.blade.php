@@ -88,6 +88,7 @@
             <th scope="col">Vég</th>
             <th scope="col">Leírás</th>
             <th scope="col">Státusz</th>
+            <th scope="col">Típus</th>
             <th scope="col">Created_at</th>
         </tr>
         </thead>
@@ -100,6 +101,7 @@
                     <td>{{$leaves->end}}</td>
                     <td>{{$leaves->desc}}</td>
                     <td>{{$leaves->status}}</td>
+                    <td>{{$leaves->type}}</td>
                     <td>{{$leaves->created_at}}</td>
                     </tr>
                 @endforeach

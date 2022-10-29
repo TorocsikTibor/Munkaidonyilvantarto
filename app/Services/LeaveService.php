@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 
 class LeaveService
 {
-        public function calculateLeaves(int $children, string $birthday): int
+        public function calculateLeaves(int $children, string $birthday, string $start): int
         {
             $age = Carbon::parse($birthday)->age;
             $leaveNumber = 20;
@@ -26,6 +26,11 @@ class LeaveService
                 default => 7,
             };
 
-            return $leaveNumber;
+            $sMonth = Carbon::parse($start)->month;
+            $sDay = Carbon::parse($start)->day;
+            $sMonth = ((13 - $sMonth) * 30) - $sDay;
+            $leaveNumber = $leaveNumber / 365 * $sMonth;
+
+            return round($leaveNumber);
         }
 }

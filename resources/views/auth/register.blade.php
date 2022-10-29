@@ -21,7 +21,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Starting work') }}" />
-                <x-jet-input id="starting_work" class="block mt-1 w-full" type="date" name="starting_work" required />
+                <x-jet-input id="starting_work" pattern="\d{4}-\d{2}" class="block mt-1 w-full" type="date" name="starting_work" required />
             </div>
 
             <div class="mt-4">
