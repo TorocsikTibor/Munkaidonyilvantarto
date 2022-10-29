@@ -34,10 +34,7 @@ class LeaveController extends Controller
     }
 
     public function listLeave() {
-        $data=['leave'];
-        return view('test', [
-            'leave' => Leave::with('Users:id,name')->get()
-        ]);
+        return view('test');
     }
 
     public function getLeave($id){

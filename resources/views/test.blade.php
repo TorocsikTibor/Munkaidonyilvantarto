@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     @vite(['resources/js/app.js'])
-
+    @livewireStyles
 </head>
 <body>
 <div id="app">
@@ -79,37 +79,8 @@
 <h1>Szabadság kalkulátor</h1>
 <a href="{{ route('index') }}" class="btn btn-danger">Szabadság</a>
 <div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Név</th>
-            <th scope="col">Kezdet</th>
-            <th scope="col">Vég</th>
-            <th scope="col">Leírás</th>
-            <th scope="col">Státusz</th>
-            <th scope="col">Típus</th>
-            <th scope="col">Created_at</th>
-        </tr>
-        </thead>
-        <tbody>
-            @if($leave)
-                @foreach($leave as $leaves)
-                    <tr>
-                    <th scope="row">{{$leaves->Users->name}}</th>
-                    <td>{{$leaves->start}}</td>
-                    <td>{{$leaves->end}}</td>
-                    <td>{{$leaves->desc}}</td>
-                    <td>{{$leaves->status}}</td>
-                    <td>{{$leaves->type}}</td>
-                    <td>{{$leaves->created_at}}</td>
-                    </tr>
-                @endforeach
-            @endif
-        </tbody>
-    </table>
-
+    <livewire:show-leaves />
 </div>
-
+@livewireScripts
 </body>
 </html>
