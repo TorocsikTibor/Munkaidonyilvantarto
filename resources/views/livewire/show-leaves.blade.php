@@ -28,8 +28,11 @@
                         <td>{{$leaves->status}}</td>
                         <td>{{$leaves->type}}</td>
                         <td>{{$leaves->created_at}}</td>
-                        <td><button wire:click="audit({{$leaves->id}}, 'decline')" name="btn" class="btn btn-danger">Elutasít</button>
+                        <td>
+                            @can('manager')
+                            <button wire:click="audit({{$leaves->id}}, 'decline')" name="btn" class="btn btn-danger">Elutasít</button>
                             <button wire:click="audit({{$leaves->id}}, 'accept')" name="btn" class="btn btn-success">Elfogadás</button>
+                            @endcan
                             <button wire:click="audit({{$leaves->id}}, 'withdrawn')" name="btn" class="btn btn-warning">Visszavonás</button>
                         </td>
                         </tr>

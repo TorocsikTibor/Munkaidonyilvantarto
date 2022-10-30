@@ -79,9 +79,9 @@
 @can('admin')
 <h1>Szabadság kalkulátor</h1>
 @endcan
-@can('manager')
+{{--@can('manager')--}}
 <a href="{{ route('index') }}" class="btn btn-danger">Szabadság</a>
-@endcan
+{{--@endcan--}}
 <div>
     <livewire:show-leaves />
 </div>

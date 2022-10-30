@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Leave;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ShowLeaves extends Component
@@ -56,9 +57,15 @@ class ShowLeaves extends Component
 
     public function render()
     {
-        return view('livewire.show-leaves', [
-            'leave' => Leave::with('Users:id,name')->get()
-        ]);
+        if(Auth::user()->can('manager')) {
+            return view('livewire.show-leaves', [
+                'leave' => Leave::with('Users:id,name')->get()
+            ]);
+        } else {
+            return view('livewire.show-leaves', [
+                'leave' => Leave::where('users_id' ,Auth::id())->with('Users:id,name')->get()
+            ]);
+        }
     }
 
 }
