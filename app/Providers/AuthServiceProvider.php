@@ -3,7 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\UserHasRole;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,10 +26,46 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+//    public static $permissions = [
+//        'index-product' => ['manager', 'customer'],
+//        'show-product' => ['manager', 'customer'],
+//        'create-product' => ['manager'],
+//        'store-product' => ['manager'],
+//        'edit-product' => ['manager'],
+//        'update-product' => ['manager'],
+//        'destroy-product' => ['manager'],
+//    ];
+
+
     public function boot()
     {
+
         $this->registerPolicies();
 
-        //
+        Gate::before( function ($user, $ability) {
+
+            $admin = UserHasRole::where('user_id', $user->id)->with('role')->get();
+            foreach ($admin as $admins)
+            {
+                if ($admins->role->name === 'admin') {
+                    return true;
+                }
+            }
+        });
+
+
+        Gate::define('manager', function (User $user) {
+            $admin = UserHasRole::where('user_id', $user->id)->with('role')->get();
+
+            foreach ($admin as $admins)
+            {
+                if ($admins->role->name === 'manager') {
+                    return true;
+                }
+            }
+        });
+
+
     }
 }

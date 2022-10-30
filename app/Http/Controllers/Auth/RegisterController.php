@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\LeaveCalculate;
+use App\Models\UserHasRole;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Services\LeaveService;
@@ -98,6 +99,11 @@ class RegisterController extends Controller
         $leaveCalculate->starting_work = $data['starting_work'];
         $leaveCalculate->children = $data['children'];
         $leaveCalculate->save();
+
+        $role = new UserHasRole();
+        $role->role_id = 2;
+        $role->user_id = $user->id;
+        $role->save();
 
         return $user;
     }

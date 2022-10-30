@@ -42,5 +42,23 @@ class DatabaseSeeder extends Seeder
             'birthday' => '1995-10-18 11:04:44',
             'starting_work' => '1996-10-18 11:04:44',
         ]);
+
+        DB::table('role')->insert([
+            'name' => "admin",
+        ]);
+
+        DB::table('role')->insert([
+            'name' => "user",
+        ]);
+
+        DB::table('role')->insert([
+            'name' => "manager",
+        ]);
+
+        DB::table('user_has_role')->insert([
+            'role_id' => 1,
+            'user_id' => 1,
+        ]);
+
     }
 }

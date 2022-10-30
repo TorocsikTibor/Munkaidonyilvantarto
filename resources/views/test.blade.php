@@ -76,8 +76,12 @@
         @yield('content')
     </main>
 </div>
+@can('admin')
 <h1>Szabadság kalkulátor</h1>
+@endcan
+@can('manager')
 <a href="{{ route('index') }}" class="btn btn-danger">Szabadság</a>
+@endcan
 <div>
     <livewire:show-leaves />
 </div>

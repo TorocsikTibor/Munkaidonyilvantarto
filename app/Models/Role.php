@@ -9,8 +9,11 @@ class Role extends Model
 {
     use HasFactory;
 
-    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    protected $guarded = [];
+    protected $table = "role";
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class, )->using(UserHasRole::class);
     }
 }
