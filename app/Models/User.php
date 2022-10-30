@@ -63,13 +63,16 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function leave(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
+    public function leave(): \Illuminate\Database\Eloquent\Relations\HasMany {
         return $this->hasMany(Leave::class);
     }
 
-    public function leaveCalculate(): \Illuminate\Database\Eloquent\Relations\HasOne
-    {
+    public function leaveCalculate(): \Illuminate\Database\Eloquent\Relations\HasOne {
         return $this->hasOne(LeaveCalculate::class);
     }
+
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
 }
