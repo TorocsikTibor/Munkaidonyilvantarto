@@ -21,19 +21,28 @@
                 @if($leave)
                     @foreach($leave as $leaves)
                         <tr>
-                        <th scope="row">{{$leaves->Users->name}}</th>
-                        <td>{{$leaves->start}}</td>
-                        <td>{{$leaves->end}}</td>
-                        <td>{{$leaves->desc}}</td>
-                        <td>{{$leaves->status}}</td>
-                        <td>{{$leaves->type}}</td>
-                        <td>{{$leaves->created_at}}</td>
-                        <td>
+                        <th class="align-middle" scope="row">{{$leaves->Users->name}}</th>
+                        <td class="align-middle">{{$leaves->start}}</td>
+                        <td class="align-middle">{{$leaves->end}}</td>
+                        <td class="align-middle">{{$leaves->desc}}</td>
+                        <td class="align-middle">{{$leaves->status}}</td>
+                        <td class="align-middle">{{$leaves->type}}</td>
+                        <td class="align-middle">{{$leaves->created_at}}</td>
+                        <td class="align-middle">
+
                             @can('manager')
-                            <button wire:click="audit({{$leaves->id}}, 'decline')" name="btn" class="btn btn-danger">Elutasít</button>
-                            <button wire:click="audit({{$leaves->id}}, 'accept')" name="btn" class="btn btn-success">Elfogadás</button>
+                                    @if(\Illuminate\Support\Facades\Auth::id() != $leaves->users_id && $leaves->status === 'waiting_for_approval')
+                                        <button wire:click="audit({{$leaves->id}}, 'decline')" name="btn" class="btn btn-danger">Elutasít</button>
+                                        <button wire:click="audit({{$leaves->id}}, 'accept')" name="btn" class="btn btn-success">Elfogadás</button>
+                                    @else
+{{--                                    <button wire:click="audit({{$leaves->id}}, 'decline')" name="btn" class="btn btn-danger" disabled>Elutasít</button>--}}
+{{--                                    <button wire:click="audit({{$leaves->id}}, 'accept')" name="btn" class="btn btn-success" disabled>Elfogadás</button>--}}
+                                    @endif
                             @endcan
-                            <button wire:click="audit({{$leaves->id}}, 'withdrawn')" name="btn" class="btn btn-warning">Visszavonás</button>
+                                    @if(\Illuminate\Support\Facades\Auth::id() == $leaves->users_id && $leaves->status != 'withdrawn')
+                                        <button wire:click="audit({{$leaves->id}}, 'withdrawn')" name="btn" class="btn btn-warning">Visszavonás</button>
+                                    @else
+                                    @endif
                         </td>
                         </tr>
                     @endforeach

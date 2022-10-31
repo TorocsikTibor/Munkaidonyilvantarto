@@ -66,7 +66,7 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        Gate::define('manager', function (User $user) {
+        Gate::define('user', function (User $user) {
             $admin = UserHasRole::where('user_id', $user->id)->with('role')->get();
 
             foreach ($admin as $admins)
