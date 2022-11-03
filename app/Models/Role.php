@@ -11,6 +11,7 @@ class Role extends Model
 
     protected $guarded = [];
     protected $table = "role";
+    public $timestamps = false;
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

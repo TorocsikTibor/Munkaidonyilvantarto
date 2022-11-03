@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::get('/leave', [\App\Http\Controllers\LeaveController::class, 'listLeave']);
 Route::get('/makeleave', [\App\Http\Controllers\LeaveController::class, 'index'])->name('index');
 Route::post('makeleave', [\App\Http\Controllers\LeaveController::class, 'saveData'])->name('makeleave');
+
+Route::get('/project', [\App\Http\Controllers\ProjectController::class, 'listProject']);
 Route::get('/layout', function () {
     return view('layouts.app1');
 });

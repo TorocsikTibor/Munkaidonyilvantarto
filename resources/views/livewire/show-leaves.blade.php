@@ -43,6 +43,7 @@
                                         <button wire:click="audit({{$leaves->id}}, 'withdrawn')" name="btn" class="btn btn-warning">Visszavonás</button>
                                     @else
                                     @endif
+
                         </td>
                         </tr>
                     @endforeach

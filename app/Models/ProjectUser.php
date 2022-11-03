@@ -4,22 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserHasRole extends Model
+class ProjectUser extends Pivot
 {
     use HasFactory;
-
     protected $guarded = [];
-    protected $table = "user_has_role";
+    protected $table = "project_user";
     public $timestamps = false;
 
-    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+
 }

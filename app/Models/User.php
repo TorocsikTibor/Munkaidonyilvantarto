@@ -63,16 +63,29 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function leave(): \Illuminate\Database\Eloquent\Relations\HasMany {
+    public function leave(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(Leave::class);
     }
 
-    public function leaveCalculate(): \Illuminate\Database\Eloquent\Relations\HasOne {
+    public function leaveCalculate(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(LeaveCalculate::class);
     }
 
-    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(Role::class)->using(UserHasRole::class);
+    }
+
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Project::class)->using(ProjectUser::class);
+    }
+
+    public function pManager(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Project::class, 'pmanager_id');
     }
 
 }
