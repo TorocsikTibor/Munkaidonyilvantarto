@@ -37,6 +37,7 @@
             <th scope="col">#</th>
             <th scope="col">Név</th>
             <th scope="col">Projekt menedzser</th>
+            <th scope="col">Timer</th>
         </tr>
         </thead>
         <tbody>
@@ -45,10 +46,11 @@
             <th scope="row">{{$project->id}}</th>
             <td>{{$project->name}}</td>
             <td>{{$project->pManager->name}}</td>
+            <td>
+{{--                <button wire:click="createTimer({{$project->id}})" name="btn" class="btn btn-primary">Task</button>--}}
+            </td>
         </tr>
         @endforeach
         </tbody>
     </table>
-
-
 </div>
