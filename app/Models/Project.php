@@ -24,7 +24,7 @@ class Project extends Model
 
     public function timer(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Timer::class);
+        return $this->hasMany(Task::class);
     }
 
 

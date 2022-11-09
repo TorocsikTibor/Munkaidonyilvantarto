@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('timer', function (Blueprint $table) {
+        Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->date('timer_start')->nullable();
-            $table->date('timer_end')->nullable();
+            $table->string('description', 1000)->nullable();
+            $table->timestamp('timer_start')->nullable();
+            $table->timestamp('timer_end')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timer');
+        Schema::dropIfExists('task');
     }
 };

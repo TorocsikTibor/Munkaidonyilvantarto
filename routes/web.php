@@ -25,6 +25,9 @@ Route::get('/makeleave', [\App\Http\Controllers\LeaveController::class, 'index']
 Route::post('makeleave', [\App\Http\Controllers\LeaveController::class, 'saveData'])->name('makeleave');
 
 Route::get('/project', [\App\Http\Controllers\ProjectController::class, 'listProject']);
+Route::get('/task/{task}', [\App\Http\Controllers\TaskController::class, 'edit']);
+Route::post('/task/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
+Route::get('/manager', [\App\Http\Controllers\ManagerController::class, 'showStatistics'])->middleware('can:manager');
 Route::get('/layout', function () {
     return view('layouts.app1');
 });

@@ -2,9 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Services\TimerService;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Task;
 use App\Models\ProjectUser;
 
 class MakeProject extends Component
@@ -16,6 +20,7 @@ class MakeProject extends Component
     public $aUsers;
 //    public $projects;
     public $name;
+    public $taskName;
     public $pmanager_id;
 
     public function saveProject()
@@ -33,9 +38,21 @@ class MakeProject extends Component
         }
     }
 
-    public function createTimer($id)
+    public function createTimer($project_id)
     {
+        $task = new Task;
+        $task->project_id = $project_id;
+        $task->user_id = Auth::id();
+        $task->name = $this->taskName;
+        $task->timer_start = Carbon::now();
+        $task->save();
+    }
 
+    public function endTimer($id)
+    {
+        $selectTimer = Task::find($id);
+        $selectTimer->timer_end = Carbon::now();
+        $selectTimer->save();
     }
 
     public function render()
@@ -43,10 +60,11 @@ class MakeProject extends Component
         $searchTerm = '%' . $this->searchTerm . '%';
         $this->Susers = User::where('name', 'like', $searchTerm)->get();
         $this->aUsers = User::all();
-//        $this->projects =  Project::with('user')->get();
 
         return view('livewire.make-project', [
+            'timeDiff' => new TimerService(),
             'projects' => Project::with('pManager')->get(),
+            'tasks' => Task::all(),
             'users' => User::when(count(array_filter($this->selectedUsers)), function ($query) {
                 return $query->whereIn('name', $this->selectedUsers);
             })
