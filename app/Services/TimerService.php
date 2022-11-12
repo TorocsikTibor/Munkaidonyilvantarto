@@ -10,9 +10,7 @@ class TimerService
     {
         $startTimer = Carbon::parse($start);
         $endTimer = Carbon::parse($end);
-
-        $totalDuration = $endTimer->diffInSeconds($startTimer);
-
-        return gmdate('H:i:s', $totalDuration);
+        
+        return $endTimer->diff($startTimer)->format('%d nap %H óra %i perc %s mp');;
     }
 }

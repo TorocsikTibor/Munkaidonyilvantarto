@@ -43,6 +43,21 @@ class DatabaseSeeder extends Seeder
             'starting_work' => '1996-10-18 11:04:44',
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'TT',
+            'email' => 'test1@example.com',
+            'password' => Hash::make('123'),
+            'leave_number' => 20,
+            'sick_leave' => 0,
+        ]);
+
+        DB::table('leave_calculate')->insert([
+            'user_id' => 2,
+            'children' => 1,
+            'birthday' => '1995-10-18 11:04:44',
+            'starting_work' => '1996-10-18 11:04:44',
+        ]);
+
         DB::table('role')->insert([
             'name' => "admin",
         ]);
@@ -58,6 +73,11 @@ class DatabaseSeeder extends Seeder
         DB::table('user_has_role')->insert([
             'role_id' => 1,
             'user_id' => 1,
+        ]);
+
+        DB::table('user_has_role')->insert([
+            'role_id' => 3,
+            'user_id' => 2,
         ]);
 
     }

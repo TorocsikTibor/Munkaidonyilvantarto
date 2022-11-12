@@ -11,10 +11,17 @@ use Illuminate\Support\Facades\Auth;
 class LeaveController extends Controller
 {
     public function index(){
-        return view('makeleave');
+        return view('Leave.makeleave');
     }
 
     public function saveData(Request $request) {
+
+        $request->validate([
+            'type' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'desc' => 'nullable',
+        ]);
 
         $leave = new Leave;
         $leave->type = $request->input('type');

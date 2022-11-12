@@ -1,21 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app1')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    @vite(['resources/js/app.js'])
-</head>
-<body>
+@section('content')
 <form action='{{URL('/task/'.$task->id)}}' method="POST" >
         @csrf
         <label for="exampleDropdownFormEmail2" class="form-label">ID:</label>
@@ -29,5 +14,4 @@
 
         <input type="submit" class="btn btn-success btn-kuldes" value="Mentés">
 </form>
-</body>
-</html>
+@endsection

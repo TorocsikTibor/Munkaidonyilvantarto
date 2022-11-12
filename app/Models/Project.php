@@ -22,11 +22,9 @@ class Project extends Model
         return $this->belongsTo(User::class, 'pmanager_id');
     }
 
-    public function timer(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Task::class);
     }
-
-
 
 }

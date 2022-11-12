@@ -88,7 +88,7 @@ class User extends Authenticatable
         return $this->hasMany(Project::class, 'pmanager_id');
     }
 
-    public function timer(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Task::class);
     }

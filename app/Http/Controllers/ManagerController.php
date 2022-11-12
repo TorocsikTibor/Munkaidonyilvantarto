@@ -8,6 +8,6 @@ class ManagerController extends Controller
 {
     public function showStatistics()
     {
-        return view('manager');
+        return view('Manager.manager');
     }
 }
