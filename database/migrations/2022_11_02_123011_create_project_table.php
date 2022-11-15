@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('pmanager_id');
-            $table->foreign('pmanager_id')->references('id')->on('users');
+            $table->string('description', 1000);
+            $table->date('deadline');
+            $table->foreign('pmanager_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

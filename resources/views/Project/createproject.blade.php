@@ -1,8 +1,8 @@
 @extends('layouts.app1')
-    @livewireStyles
+@livewireStyles
 @section('content')
     <div>
-        <livewire:show-projects />
+        <livewire:make-project />
     </div>
     @livewireScripts
 @endsection

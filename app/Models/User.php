@@ -30,7 +30,7 @@ class User extends Authenticatable
         'leave_number',
         'children',
         'birthday',
-        'sick-leave',
+        'sick_leave',
     ];
 
     /**

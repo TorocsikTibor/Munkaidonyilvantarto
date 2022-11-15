@@ -55,15 +55,15 @@ class LeaveController extends Controller
         }
 
 
-        if($userLeave->leave_number < 0) {
-            session()->flash('message', 'Nincs több szabadság.'); //TODO flash message
-            return 0;
-        }
-
-        if($userLeave->leave_number - $usedLeaves < 0) {
-            session()->flash('message', 'Nincs elég szabadság.'); //TODO flash message
-            return 1;
-        }
+//        if($userLeave->leave_number < 0) {
+//            session()->flash('message', 'Nincs több szabadság.'); //TODO flash message
+//            return 0;
+//        }
+//
+//        if($userLeave->leave_number - $usedLeaves < 0) {
+//            session()->flash('message', 'Nincs elég szabadság.'); //TODO flash message
+//            return 1;
+//        }
         $leave->save();
 
         return redirect('leave');

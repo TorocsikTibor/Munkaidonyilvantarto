@@ -34,6 +34,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL('/project')}}">Projektek</a>
                     </li>
+                    @can('manager')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{URL('/manager')}}">Menedzser</a>
+                    </li>
+                    @endcan
                     <li>
                     @guest
                         @if (Route::has('login'))

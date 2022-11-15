@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('type');
             $table->enum('status', Status::getValues());
             $table->timestamps();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function makeProject()
+    {
+        return view('project.createproject');
+    }
+
     public function listProject()
     {
         return view('makeproject');

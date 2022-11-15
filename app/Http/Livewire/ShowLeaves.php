@@ -52,6 +52,11 @@ class ShowLeaves extends Component
                 return Leave::find($id)->update([
                     'status' => 'withdrawn',
                 ]);
+
+            case 'waiting_for_approval':
+                return Leave::find($id)->update([
+                    'status' => 'waiting_for_approval',
+                ]);
         }
     }
 

@@ -10,7 +10,7 @@ class TimerService
     {
         $startTimer = Carbon::parse($start);
         $endTimer = Carbon::parse($end);
-        
+
         return $endTimer->diff($startTimer)->format('%d nap %H óra %i perc %s mp');;
     }
 }
