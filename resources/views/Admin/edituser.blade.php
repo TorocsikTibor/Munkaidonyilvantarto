@@ -13,6 +13,18 @@
             <input type="text" name="email" class="form-control" value="{{$user->email}}">
         </div>
         <div class="mb-3">
+            <label class="form-label">Munka megkezdése</label>
+            <input type="date" name="starting_work" class="form-control" value="{{$user->leaveCalculate->starting_work}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Születési év</label>
+            <input type="date" name="birthday" class="form-control" value="{{$user->leaveCalculate->birthday}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gyerekek száma</label>
+            <input type="number" name="children" class="form-control" value="{{$user->leaveCalculate->children}}">
+        </div>
+        <div class="mb-3">
             <label class="form-label">Szabadságok száma</label>
             <input type="number" name="leave_number" class="form-control" value="{{$user->leave_number}}">
         </div>

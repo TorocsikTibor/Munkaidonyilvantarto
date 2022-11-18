@@ -7,6 +7,9 @@
         <tr>
             <th scope="col">Név</th>
             <th scope="col">Email</th>
+            <th scope="col">Munka megkezdése</th>
+            <th scope="col">Születésnap</th>
+            <th scope="col">Gyerekek száma</th>
             <th scope="col">Szabadság</th>
             <th scope="col">Beteg szabadság</th>
         </tr>
@@ -17,6 +20,9 @@
                 <tr>
                     <td class="align-middle">{{$user->name}}</td>
                     <td class="align-middle">{{$user->email}}</td>
+                    <td class="align-middle">{{$user->leaveCalculate->starting_work}}</td>
+                    <td class="align-middle">{{$user->leaveCalculate->birthday}}</td>
+                    <td class="align-middle">{{$user->leaveCalculate->children}}</td>
                     <td class="align-middle">{{$user->leave_number}}</td>
                     <td class="align-middle">{{$user->sick_leave}}</td>
                     <td class="align-middle">

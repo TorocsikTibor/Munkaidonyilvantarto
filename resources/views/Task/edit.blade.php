@@ -1,23 +1,26 @@
 @extends('layouts.app1')
 
 @section('content')
-    <form action=action='{{URL('/task/'.$task->id)}}' method="POST" >
+    <h2>Feladat szerkesztése</h2>
+    <form action='{{URL('/task/'.$task->id)}}' method="POST" >
         @csrf
-
         <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">ID:</label>
-            <input type="text" name="id" class="form-control" value="{{$task->id}}">
-        </div>
-        <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Name:</label>
+            <label for="exampleDropdownFormEmail2" class="form-label">Név:</label>
             <input type="text" name="name" class="form-control" value="{{$task->name}}">
         </div>
         <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Description:</label>
+            <label for="exampleDropdownFormEmail2" class="form-label">Leírás:</label>
             <input type="text" name="description" class="form-control" value="{{$task->description}}">
         </div>
         <div class="mb-3">
-            <input type="submit" class="btn btn-success btn-kuldes" value="Mentés">
+            <input type="submit" class="btn btn-success" value="Mentés">
         </div>
+    </form>
+
+    <form action='{{URL('/task/'.$task->id)}}' method="POST" >
+        @csrf
+        @method('DELETE')
+        <input type="submit" class="btn btn-danger" value="Törlés">
+
     </form>
 @endsection

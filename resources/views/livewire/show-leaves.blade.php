@@ -52,7 +52,11 @@
                             </button>
                         @else
                         @endif
-
+                        @if(\Illuminate\Support\Facades\Auth::id() == $leaves->users_id && $leaves->status == 'draft')
+                                <button wire:click="audit({{$leaves->id}}, 'waiting_for_approval')" name="btn" class="btn btn-success">
+                                    Véglegesítés
+                                </button>
+                        @endif
                     </td>
                 </tr>
             @endforeach

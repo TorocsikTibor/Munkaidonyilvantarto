@@ -5,10 +5,6 @@
     <form action='{{URL('admin/leave/'.$leave->id)}}' method="POST" >
         @csrf
         <div class="mb-3">
-            <label class="form-label">Felhasználó id</label>
-            <input type="number" name="users_id" class="form-control" value="{{$leave->users_id}}">
-        </div>
-        <div class="mb-3">
             <label class="form-label">Kezdet</label>
             <input type="date" name="start" class="form-control" value="{{$leave->start}}">
         </div>

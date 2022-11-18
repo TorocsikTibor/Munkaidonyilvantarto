@@ -12,6 +12,7 @@ class Project extends Model
     protected $guarded = [];
     protected $table = "project";
 
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class)->using(ProjectUser::class);

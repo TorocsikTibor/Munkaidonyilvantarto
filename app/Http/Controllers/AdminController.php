@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave;
+use App\Models\LeaveCalculate;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 class AdminController
@@ -15,21 +17,34 @@ class AdminController
 
     public function updateProject(Project $project, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {                                                           //todo validate
-//        $request->validate([
-//            'name' => 'required',
-//            'pmanager_id' => 'required|max:1000',
-//        ]);
+        $request->validate([
+            'name' => 'required',
+            'pmanager_id' => 'required|integer',
+            'description' => 'required|max:1000',
+            'deadline' => 'required|date|after:yesterday',
+        ]);
 
         $project->fill($request->all());
         $project->save();
 
-        return redirect('admin/projects');
+        if(Auth::user()->can('admin'))
+        {
+            return redirect('admin/projects');
+        } else {
+            return redirect('manager');
+        }
     }
 
     public function deleteProject(Project $project)
     {
         $project->delete();
-        return redirect('admin/projects');
+        if(Auth::user()->can('admin'))
+        {
+            return redirect('admin/projects');
+        } else {
+            return redirect('manager');
+        }
+
     }
 
     public function editProject(Project $project)
@@ -44,12 +59,28 @@ class AdminController
     }
 
     public function updateUser(User $user, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-    {                                                           //todo validate
-//        $request->validate([
-//            'name' => 'required',
-//        ]);
-        $user->fill($request->all());
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'leave_number' => 'required|integer',
+            'sick_leave' => 'required|integer',
+            'starting_work' => 'required|date',
+            'birthday' => 'required|date',
+            'children' => 'required|integer',
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->leave_number = $request->input('leave_number');
+        $user->sick_leave = $request->input('sick_leave');
         $user->save();
+
+        $userLeave = LeaveCalculate::find($user->id);
+        $userLeave->starting_work = $request->input('starting_work');
+        $userLeave->children = $request->input('children');
+        $userLeave->birthday = $request->input('birthday');
+        $userLeave->save();
 
         return redirect('admin/users');
     }
@@ -79,9 +110,13 @@ class AdminController
 
     public function updateLeave(Leave $leave, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {                                                           //todo validate
-//        $request->validate([
-//            'name' => 'required',
-//        ]);
+        $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date|after:start',
+            'desc' => 'required',
+            'type' => 'required|integer',
+            'status' => 'required',
+        ]);
         $leave->fill($request->all());
         $leave->save();
 

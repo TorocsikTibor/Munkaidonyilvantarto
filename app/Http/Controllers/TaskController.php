@@ -12,16 +12,22 @@ class TaskController extends Controller
         return view('Task.edit', ['task' => $task]);
     }
 
+    public function delete(Task $task)
+    {
+        $task->delete();
+        return redirect('project');
+    }
+
     public function update(Task $task, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {                                                           //todo validate
         $request->validate([
             'name' => 'required',
-            'description' => 'required|max:1000',
+            'description' => 'max:1000',
         ]);
 
         $task->fill($request->all());
         $task->save();
 
-        return redirect('project');
+        return redirect('project')->with('message', 'Változtatás megtörtént!');
     }
 }

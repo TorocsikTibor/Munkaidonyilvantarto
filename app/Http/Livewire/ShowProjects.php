@@ -14,6 +14,7 @@ class ShowProjects extends Component
 {
 
     public $taskName;
+    public $getProject;
 
     public function createTimer($project_id)
     {
@@ -40,9 +41,14 @@ class ShowProjects extends Component
                 'projects' => Project::with('pManager')->get(),
             ]);
         } else {
-            return view('livewire.make-project', [
+//            $this->getProject->tasks()->where('user_id', Auth::id())->get();
+            return view('livewire.show-projects', [
                 'timeDiff' => new TimerService(),
-                'projects' => ProjectUser::where('user_id', Auth::id())->get(),
+                'projects' => Project::whereRelation('user', 'user_id', '=', Auth::id())->get(),
+//                'projects' => Project::whereHas('tasks', function ($query) {
+//                    return $query->where('user_id', '=', Auth::id());
+//                })->get(),
+//                'projects' => Project::all(),
             ]);
         }
     }

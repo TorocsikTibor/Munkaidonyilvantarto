@@ -48,7 +48,6 @@ class MakeProject extends Component
 
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-    if(Auth::user()->can('manager')) {
         $searchTerm = '%' . $this->searchTerm . '%';
         $this->Susers = User::where('name', 'like', $searchTerm)->get();
 
@@ -59,11 +58,7 @@ class MakeProject extends Component
                 return $query->whereIn('name', $this->selectedUsers);
             })
         ]);
-    } else {
-        return view('livewire.make-project', [
-            'timeDiff' => new TimerService(),
-            'projects' => ProjectUser::where('user_id', Auth::id())->get(),
-        ]);
-        }
     }
+
 }
+
