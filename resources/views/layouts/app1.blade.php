@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <script>setTimeout(function() {
-    $('#mydiv').fadeOut('fast');
+    $('#error').fadeOut('fast');
     }, 3000); // <-- time in milliseconds
     </script>
 
@@ -44,6 +44,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL('/manager')}}">Menedzser</a>
                     </li>
+                    @endcan
+                    @can('admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{URL('/admin')}}">Admin</a>
+                        </li>
                     @endcan
                     <li>
                     @guest
@@ -89,7 +94,7 @@
 
 
                 @if ($errors->any())
-                    <div id="mydiv">
+                    <div id="error">
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
