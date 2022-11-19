@@ -13,7 +13,13 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <script>setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+    }, 3000); // <-- time in milliseconds
+    </script>
+
     @vite(['resources/js/app.js'])
+
 </head>
 <body>
 <main>
@@ -79,6 +85,22 @@
     <div class="mt-5">
         <div class="bg-light p-5 rounded">
             <div class="col-sm-8 mx-auto">
+
+
+
+                @if ($errors->any())
+                    <div id="mydiv">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    </div>
+                @endif
+
+
                 @yield('content')
 {{--                <h1>Navbar examples</h1>--}}
 {{--                <p>This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend the width of the viewport, others are confined within a <code>.container</code>. For positioning of navbars, checkout the <a href="/docs/5.0/examples/navbar-static/">top</a> and <a href="/docs/5.0/examples/navbar-fixed/">fixed top</a> examples.</p>--}}
@@ -90,5 +112,6 @@
         </div>
     </div>
 </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
