@@ -29,32 +29,31 @@
                      aria-labelledby="headingOne{{$project->id}}" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
 
-                        <form>
-                            <div class="row">
-                                <div class="input-group col-md-3 mb-3">
-                                    <input class="form-control" style="max-width: 200px;" value="{{$project->name}}"
-                                           disabled>
-                                    <input class="form-control" style="max-width: 200px;"
-                                           value="{{$project->pManager->name}}" disabled>
-                                    <input class="form-control" style="max-width: 200px;"
-                                           value="{{$project->deadline}}" disabled>
-                                    <input class="form-control" style="max-width: 200px;"
-                                           value="{{$project->description}}" disabled>
-                                    <input class="form-control" style="max-width: 200px;"
-                                           value="{{$project->deadline}}" disabled>
-                                    <input class="form-control" style="max-width: 200px;"
-                                           value="{{$timeDiff->getAllTime($project->tasks)}}" disabled>
-                                    <div class="mb-3">
-                                        <a href="{{URL('/admin/project/'.$project->id)}}" class="btn btn-primary">Módosít</a>
-                                        <form action='{{URL('/admin/project/'.$project->id)}}' method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-danger" value="Törlés">
-                                        </form>
-                                    </div>
+                        <div class="row">
+                            <div class="input-group col-md-3 mb-3">
+                                <input class="form-control" style="max-width: 200px;" value="{{$project->name}}"
+                                       disabled>
+                                <input class="form-control" style="max-width: 200px;"
+                                       value="{{$project->pManager->name}}" disabled>
+                                <input class="form-control" style="max-width: 200px;"
+                                       value="{{$project->deadline}}" disabled>
+                                <input class="form-control" style="max-width: 200px;"
+                                       value="{{$project->description}}" disabled>
+                                <input class="form-control" style="max-width: 200px;"
+                                       value="{{$project->deadline}}" disabled>
+                                <input class="form-control" style="max-width: 200px;"
+                                       value="{{$timeDiff->getAllTime($project->tasks)}}" disabled>
+                                <div class="mb-3">
+                                    <a href="{{URL('/admin/project/'.$project->id)}}"
+                                       class="btn btn-primary">Módosít</a>
                                 </div>
+                                <form action="{{URL('/admin/project/'.$project->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Törlés">
+                                </form>
                             </div>
-                        </form>
+                        </div>
                         @if($project->user->count())
                             <h3>Projekten dolgozók száma: {{$project->user->count()}}</h3>
                             <table class="table table-striped">

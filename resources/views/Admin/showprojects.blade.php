@@ -23,7 +23,7 @@
                     <td class="align-middle">{{$project->deadline}}</td>
                     <td class="align-middle">
                         <a href="{{URL('/admin/project/'.$project->id)}}" class="btn btn-primary">Módosít</a>
-                        <form action='{{URL('/admin/project/'.$project->id)}}' method="POST" >
+                        <form action="{{URL('/admin/project/'.$project->id)}}" method="POST" >
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger" value="Törlés">

@@ -49,6 +49,8 @@
             @foreach($selectedUsers as $course)
                 {{$course}}
             @endforeach
+
+
             <input type="submit" class="btn btn-success justify-content-end" name="action" value="Mentés">
         </form>
     @endcan

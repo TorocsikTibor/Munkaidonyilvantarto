@@ -13,11 +13,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <script>setTimeout(function() {
-    $('#error').fadeOut('fast');
-    }, 3000); // <-- time in milliseconds
-    </script>
-
     @vite(['resources/js/app.js'])
 
 </head>
@@ -94,14 +89,12 @@
 
 
                 @if ($errors->any())
-                    <div id="error">
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div>
                     </div>
                 @endif
 
@@ -117,6 +110,5 @@
         </div>
     </div>
 </main>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>

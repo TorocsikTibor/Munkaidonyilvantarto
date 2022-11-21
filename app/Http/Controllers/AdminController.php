@@ -15,25 +15,25 @@ class AdminController
 {
 
 
-    public function updateProject(Project $project, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-    {                                                           //todo validate
-        $request->validate([
-            'name' => 'required',
-            'pmanager_id' => 'required|integer',
-            'description' => 'required|max:1000',
-            'deadline' => 'required|date|after:yesterday',
-        ]);
-
-        $project->fill($request->all());
-        $project->save();
-
-        if(Auth::user()->can('admin'))
-        {
-            return redirect('admin/projects');
-        } else {
-            return redirect('manager');
-        }
-    }
+//    public function updateProject(Project $project, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+//    {                                                           //todo validate
+//        $request->validate([
+//            'name' => 'required',
+//            'pmanager_id' => 'required|integer',
+//            'description' => 'required|max:1000',
+//            'deadline' => 'required|date|after:yesterday',
+//        ]);
+//
+//        $project->fill($request->all());
+//        $project->save();
+//
+//        if(Auth::user()->can('admin'))
+//        {
+//            return redirect('admin/projects');
+//        } else {
+//            return redirect('manager');
+//        }
+//    }
 
     public function deleteProject(Project $project)
     {
@@ -44,7 +44,6 @@ class AdminController
         } else {
             return redirect('manager');
         }
-
     }
 
     public function editProject(Project $project)

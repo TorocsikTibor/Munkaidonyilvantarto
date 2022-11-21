@@ -35,7 +35,7 @@ Route::post('/admin/user/{user}', [\App\Http\Controllers\AdminController::class,
 Route::delete('/admin/user/{user}', [\App\Http\Controllers\AdminController::class, 'deleteUser'])->middleware('can:admin');
 Route::get('/admin/projects', [\App\Http\Controllers\AdminController::class, 'showProjects'])->middleware('can:admin');
 Route::get('/admin/project/{project}', [\App\Http\Controllers\AdminController::class, 'editProject'])->middleware('can:manager');
-Route::post('/admin/project/{project}', [\App\Http\Controllers\AdminController::class, 'updateProject'])->middleware('can:manager');
+//Route::post('/admin/project/{project}', [\App\Http\Controllers\AdminController::class, 'updateProject'])->middleware('can:manager');
 Route::delete('/admin/project/{project}', [\App\Http\Controllers\AdminController::class, 'deleteProject'])->middleware('can:manager');
 Route::get('/admin/leaves', [\App\Http\Controllers\AdminController::class, 'showLeaves'])->middleware('can:admin');
 Route::get('/admin/leave/{leave}', [\App\Http\Controllers\AdminController::class, 'editLeave'])->middleware('can:admin');
