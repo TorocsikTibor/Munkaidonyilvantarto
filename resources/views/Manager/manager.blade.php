@@ -5,8 +5,8 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Projektek</h2>
-                <p class="card-text">{{$project}}/{{$nOwnProject}}</p>
-                <a href="#" class="card-link">Card link</a>
+                <p class="card-text">Összes projekt:{{$project}}</p>
+                <p class="card-text">Saját projekt:{{$nOwnProject}}</p>
             </div>
         </div>
     </div>
@@ -39,8 +39,6 @@
                                        value="{{$project->deadline}}" disabled>
                                 <input class="form-control" style="max-width: 200px;"
                                        value="{{$project->description}}" disabled>
-                                <input class="form-control" style="max-width: 200px;"
-                                       value="{{$project->deadline}}" disabled>
                                 <input class="form-control" style="max-width: 200px;"
                                        value="{{$timeDiff->getAllTime($project->tasks)}}" disabled>
                                 <div class="mb-3">
@@ -78,6 +76,7 @@
                                 <thead>
                                 <th scope="col">Név</th>
                                 <th scope="col">Készítő</th>
+                                <th scope="col">Leírás</th>
                                 <th scope="col">Kezdés</th>
                                 <th scope="col">Idő</th>
                                 </thead>
@@ -91,6 +90,7 @@
                                             <td>{{$task->name}}</td>
                                         @endif
                                         <td>{{$task->user->name}}</td>
+                                        <td>{{$task->description}}</td>
                                         <td>{{$task->timer_start}}</td>
                                         @if($task->timer_end == 0)
                                             <td>Folyamatban...</td>

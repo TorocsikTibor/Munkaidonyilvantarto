@@ -60,6 +60,7 @@
                                     <thead>
                                     <th scope="col">Név</th>
                                     <th scope="col">Készítő</th>
+                                    <th scope="col">Leaírás</th>
                                     <th scope="col">Kezdés</th>
                                     <th scope="col">Idő</th>
                                     </thead>
@@ -73,6 +74,7 @@
                                                 <td>{{$task->name}}</td>
                                             @endif
                                             <td>{{$task->user->name}}</td>
+                                            <td>{{$task->description}}</td>
                                             <td>{{$task->timer_start}}</td>
                                             @if($task->timer_end == 0)
                                                 <td>
