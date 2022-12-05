@@ -12,6 +12,7 @@
             <th scope="col">Gyerekek száma</th>
             <th scope="col">Szabadság</th>
             <th scope="col">Beteg szabadság</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -26,12 +27,14 @@
                     <td class="align-middle">{{$user->leave_number}}</td>
                     <td class="align-middle">{{$user->sick_leave}}</td>
                     <td class="align-middle">
-                        <a href="{{URL('/admin/user/'.$user->id)}}" class="btn btn-primary">Módosít</a>
+                        <div class="d-flex align-items-center justify-content-start">
+                        <a href="{{URL('/admin/user/'.$user->id)}}" class="btn btn-primary me-3">Módosít</a>
                         <form action='{{URL('/admin/user/'.$user->id)}}' method="POST" >
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger" value="Törlés">
                         </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

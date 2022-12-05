@@ -70,18 +70,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-//        $years= Carbon::parse($data['birthday'])->age;
-//        dd($years);
-
-//        return User::create([
-//            'name' => $data['name'],
-//            'email' => $data['email'],
-//            'password' => Hash::make($data['password']),
-//            'birthday' => $data['birthday'],
-//            'children' => $data['children'],
-//            'leave_number' => 20,
-//            'sick-leave' => 0,
-//        ]);
 
         $leaveService = new LeaveService();
 

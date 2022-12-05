@@ -60,7 +60,7 @@ class LeaveController extends Controller
         }
 
         if($userLeave->leave_number - $usedLeaves < 0) {
-        return redirect('leave')->with('error','Nincs több szabadság!');
+            return redirect('leave')->with('error','Nincs több szabadság!');
         }
 
         $leave->save();

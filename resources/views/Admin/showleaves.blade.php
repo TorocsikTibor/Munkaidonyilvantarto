@@ -11,6 +11,7 @@
             <th scope="col">Leírás</th>
             <th scope="col">Tipus</th>
             <th scope="col">Státusz</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -24,12 +25,14 @@
                     <td class="align-middle">{{$leave->type}}</td>
                     <td class="align-middle">{{$leave->status}}</td>
                     <td class="align-middle">
-                        <a href="{{URL('/admin/leave/'.$leave->id)}}" class="btn btn-primary">Módosít</a>
-                        <form action='{{URL('/admin/leave/'.$leave->id)}}' method="POST" >
+                        <div class="d-flex align-items-center justify-content-start">
+                        <a href="{{URL('/admin/leave/'.$leave->id)}}" class="btn btn-primary me-3">Módosít</a>
+                        <form action='{{URL('/admin/leave/'.$leave->id)}}' method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger" value="Törlés">
                         </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
