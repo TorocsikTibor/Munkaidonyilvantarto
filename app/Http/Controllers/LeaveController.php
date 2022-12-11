@@ -20,7 +20,7 @@ class LeaveController extends Controller
             'type' => 'required',
             'start' => 'required|date',
             'end' => 'required|date|after:start',
-            'desc' => 'nullable',
+            'desc' => 'nullable|string',
         ]);
 
         $leave = new Leave;
@@ -69,6 +69,6 @@ class LeaveController extends Controller
     }
 
     public function listLeave() {
-        return view('test');
+        return view('leave.showleave');
     }
 }

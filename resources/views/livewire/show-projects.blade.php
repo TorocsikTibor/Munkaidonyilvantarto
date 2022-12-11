@@ -111,11 +111,11 @@
                         <div class="dropdown d-flex justify-content-end">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-expanded="false" data-bs-auto-close="outside">
-                                Timer
+                                Új feladat
                             </button>
                             <form wire:submit.prevent="createTimer({{$project->id}})" class="dropdown-menu p-4">
                                 <div class="mb-3">
-                                    <label for="exampleDropdownFormEmail2" class="form-label">Name:</label>
+                                    <label for="exampleDropdownFormEmail2" class="form-label">Feladat neve:</label>
                                     <input type="text" class="form-control" wire:model="taskName">
                                 </div>
                                 <input type="submit" class="btn btn-success btn-kuldes" name="action"
@@ -127,7 +127,7 @@
                                 <thead>
                                 <th scope="col">Név</th>
                                 <th scope="col">Készítő</th>
-                                <th scope="col">Leaírás</th>
+                                <th scope="col">Leírás</th>
                                 <th scope="col">Kezdés</th>
                                 <th scope="col">Idő</th>
                                 </thead>
@@ -209,8 +209,7 @@
                                         <label for="exampleDropdownFormEmail2" class="form-label">Name:</label>
                                         <input type="text" class="form-control" wire:model="taskName">
                                     </div>
-                                    <input type="submit" class="btn btn-success btn-kuldes" name="action"
-                                           value="Mentés">
+                                    <input type="submit" class="btn btn-success" name="action" value="Mentés">
                                 </form>
                             </div>
                             @if($project->tasks->count())

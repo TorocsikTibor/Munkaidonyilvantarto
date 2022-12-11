@@ -13,6 +13,6 @@ class ProjectController extends Controller
 
     public function listProject()
     {
-        return view('makeproject');
+        return view('project.showproject');
     }
 }

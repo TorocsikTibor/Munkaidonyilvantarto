@@ -41,14 +41,9 @@ class ShowProjects extends Component
                 'projects' => Project::with('pManager')->get(),
             ]);
         } else {
-//            $this->getProject->tasks()->where('user_id', Auth::id())->get();
             return view('livewire.show-projects', [
                 'timeDiff' => new TimerService(),
                 'projects' => Project::whereRelation('user', 'user_id', '=', Auth::id())->get(),
-//                'projects' => Project::whereHas('tasks', function ($query) {
-//                    return $query->where('user_id', '=', Auth::id());
-//                })->get(),
-//                'projects' => Project::all(),
             ]);
         }
     }

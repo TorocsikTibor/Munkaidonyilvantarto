@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('users_id');
             $table->date('start');
             $table->date('end');
-            $table->string('desc');
+            $table->string('desc')->nullable();
             $table->integer('type');
             $table->enum('status', Status::getValues());
             $table->timestamps();

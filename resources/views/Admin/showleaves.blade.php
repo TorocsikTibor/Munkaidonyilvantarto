@@ -1,11 +1,11 @@
 @extends('layouts.app1')
 
 @section('content')
-    <h2>Felhasználók</h2>
+    <h2>Szabadságok</h2>
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Felhasználó id</th>
+            <th scope="col">Név</th>
             <th scope="col">Kezdet</th>
             <th scope="col">Vég</th>
             <th scope="col">Leírás</th>
@@ -18,7 +18,7 @@
         @if($leaves)
             @foreach($leaves as $leave)
                 <tr>
-                    <td class="align-middle">{{$leave->users_id}}</td>
+                    <td class="align-middle">{{$leave->users->name}}</td>
                     <td class="align-middle">{{$leave->start}}</td>
                     <td class="align-middle">{{$leave->end}}</td>
                     <td class="align-middle">{{$leave->desc}}</td>
