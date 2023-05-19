@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class ShowLeaves extends Component
 {
-
+// todo Chain of Responsibility
     public function audit($id, $type) {
         switch($type) {
             case 'decline':

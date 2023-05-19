@@ -12,31 +12,10 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The model to policy mappings for the application.
-     *
-     * @var array<class-string, class-string>
-     */
+
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
-
-    /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
-     */
-
-//    public static $permissions = [
-//        'index-product' => ['manager', 'customer'],
-//        'show-product' => ['manager', 'customer'],
-//        'create-product' => ['manager'],
-//        'store-product' => ['manager'],
-//        'edit-product' => ['manager'],
-//        'update-product' => ['manager'],
-//        'destroy-product' => ['manager'],
-//    ];
-
 
     public function boot()
     {

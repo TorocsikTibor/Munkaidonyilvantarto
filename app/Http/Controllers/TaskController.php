@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateTaskPost;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -18,12 +19,9 @@ class TaskController extends Controller
         return redirect('project');
     }
 
-    public function update(Task $task, Request $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-    {                                                           //todo validate
-        $request->validate([
-            'name' => 'required',
-            'description' => 'max:1000',
-        ]);
+    public function update(Task $task, ValidateTaskPost $request) : \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    {
+        $request->validated();
 
         $task->fill($request->all());
         $task->save();

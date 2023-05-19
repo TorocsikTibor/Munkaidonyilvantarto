@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateLeavePost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Leave;
@@ -14,14 +15,11 @@ class LeaveController extends Controller
         return view('Leave.makeleave');
     }
 
-    public function saveData(Request $request) {
+    //todo validate
+    //todo services
+    public function saveData(ValidateLeavePost $request) {
 
-        $request->validate([
-            'type' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'desc' => 'nullable|string',
-        ]);
+        $request->validated();
 
         $leave = new Leave;
         $leave->type = $request->input('type');
